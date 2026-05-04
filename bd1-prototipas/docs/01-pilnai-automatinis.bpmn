@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_01" targetNamespace="http://planiniai.local/bpmn">
+  <bpmn:process id="Process_01" name="Pilnai automatinis importas" isExecutable="false">
+    <bpmn:startEvent id="Start" name="Gautas email"><bpmn:outgoing>F1</bpmn:outgoing></bpmn:startEvent>
+    <bpmn:serviceTask id="Read" name="Sistema perskaito inbox"><bpmn:incoming>F1</bpmn:incoming><bpmn:outgoing>F2</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="Parse" name="Nuskaito šabloną"><bpmn:incoming>F2</bpmn:incoming><bpmn:outgoing>F3</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="Complete" name="Pilna info?"><bpmn:incoming>F3</bpmn:incoming><bpmn:outgoing>F4</bpmn:outgoing><bpmn:outgoing>F8</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="CreateWork" name="Sukuria darbą"><bpmn:incoming>F4</bpmn:incoming><bpmn:outgoing>F5</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="Send" name="Išsiunčia pranešimus"><bpmn:incoming>F5</bpmn:incoming><bpmn:outgoing>F6</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="Mark" name="Pažymi importuotu"><bpmn:incoming>F6</bpmn:incoming><bpmn:outgoing>F7</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:endEvent id="Done" name="Baigta"><bpmn:incoming>F7</bpmn:incoming></bpmn:endEvent>
+    <bpmn:endEvent id="Manual" name="Į nepilnus emailus"><bpmn:incoming>F8</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="F1" sourceRef="Start" targetRef="Read" />
+    <bpmn:sequenceFlow id="F2" sourceRef="Read" targetRef="Parse" />
+    <bpmn:sequenceFlow id="F3" sourceRef="Parse" targetRef="Complete" />
+    <bpmn:sequenceFlow id="F4" name="Taip" sourceRef="Complete" targetRef="CreateWork" />
+    <bpmn:sequenceFlow id="F5" sourceRef="CreateWork" targetRef="Send" />
+    <bpmn:sequenceFlow id="F6" sourceRef="Send" targetRef="Mark" />
+    <bpmn:sequenceFlow id="F7" sourceRef="Mark" targetRef="Done" />
+    <bpmn:sequenceFlow id="F8" name="Ne" sourceRef="Complete" targetRef="Manual" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_01"><bpmndi:BPMNPlane id="Plane_01" bpmnElement="Process_01">
+    <bpmndi:BPMNShape id="S_Start" bpmnElement="Start"><dc:Bounds x="100" y="120" width="36" height="36"/></bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="S_Read" bpmnElement="Read"><dc:Bounds x="190" y="98" width="130" height="80"/></bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="S_Parse" bpmnElement="Parse"><dc:Bounds x="370" y="98" width="130" height="80"/></bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="S_Complete" bpmnElement="Complete" isMarkerVisible="true"><dc:Bounds x="550" y="113" width="50" height="50"/></bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="S_CreateWork" bpmnElement="CreateWork"><dc:Bounds x="660" y="98" width="130" height="80"/></bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="S_Send" bpmnElement="Send"><dc:Bounds x="840" y="98" width="150" height="80"/></bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="S_Mark" bpmnElement="Mark"><dc:Bounds x="1040" y="98" width="140" height="80"/></bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="S_Done" bpmnElement="Done"><dc:Bounds x="1230" y="120" width="36" height="36"/></bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="S_Manual" bpmnElement="Manual"><dc:Bounds x="557" y="240" width="36" height="36"/></bpmndi:BPMNShape>
+    <bpmndi:BPMNEdge id="E_F1" bpmnElement="F1"><di:waypoint x="136" y="138"/><di:waypoint x="190" y="138"/></bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="E_F2" bpmnElement="F2"><di:waypoint x="320" y="138"/><di:waypoint x="370" y="138"/></bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="E_F3" bpmnElement="F3"><di:waypoint x="500" y="138"/><di:waypoint x="550" y="138"/></bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="E_F4" bpmnElement="F4"><di:waypoint x="600" y="138"/><di:waypoint x="660" y="138"/></bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="E_F5" bpmnElement="F5"><di:waypoint x="790" y="138"/><di:waypoint x="840" y="138"/></bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="E_F6" bpmnElement="F6"><di:waypoint x="990" y="138"/><di:waypoint x="1040" y="138"/></bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="E_F7" bpmnElement="F7"><di:waypoint x="1180" y="138"/><di:waypoint x="1230" y="138"/></bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="E_F8" bpmnElement="F8"><di:waypoint x="575" y="163"/><di:waypoint x="575" y="240"/></bpmndi:BPMNEdge>
+  </bpmndi:BPMNPlane></bpmndi:BPMNDiagram>
+</bpmn:definitions>

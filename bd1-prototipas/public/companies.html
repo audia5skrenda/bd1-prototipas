@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Įmonės</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Įmonių valdymas</p>
+        <h1>Įmonės</h1>
+      </div>
+      <nav class="topbar-actions" aria-label="Puslapiai">
+        <a class="button button-secondary" href="index.html">Pagrindinis</a>
+        <a class="button button-secondary" href="works.html">Darbai</a>
+        <a class="button button-secondary" href="emails.html">Emailai</a>
+        <a class="button button-secondary" href="settings.html" data-admin-only>Nustatymai</a>
+        <button class="button button-secondary" onclick="loadCompanies()" type="button">
+          Atnaujinti
+        </button>
+      </nav>
+    </header>
+
+    <section class="summary-grid" aria-label="Santrauka">
+      <div class="metric">
+        <span class="metric-label">Viso įmonių</span>
+        <strong id="totalCompanies">0</strong>
+      </div>
+      <div class="metric">
+        <span class="metric-label">Su adresu</span>
+        <strong id="companiesWithAddress">0</strong>
+      </div>
+      <div class="metric metric-muted">
+        <span class="metric-label">Būsena</span>
+        <strong id="companiesStatus">Ruošiama</strong>
+      </div>
+    </section>
+
+    <section class="filter-bar" aria-label="Įmonių filtrai">
+      <input id="companySearch" type="search" placeholder="Ieškoti pagal ID, pavadinimą, adresą, telefoną, email">
+      <select id="companyContactFilter">
+        <option value="all">Visos įmonės</option>
+        <option value="with-email">Su email</option>
+        <option value="without-email">Be email</option>
+        <option value="with-phone">Su telefonu</option>
+        <option value="without-phone">Be telefono</option>
+      </select>
+    </section>
+
+    <section class="pagination-bar" aria-label="Įmonių puslapiavimas">
+      <span id="companiesPageSummary">0 įmonių</span>
+      <div class="pagination-actions">
+        <button class="button button-secondary" id="previousCompaniesPage" type="button">Atgal</button>
+        <span id="companiesPageIndicator">1 / 1</span>
+        <button class="button button-secondary" id="nextCompaniesPage" type="button">Toliau</button>
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Sąrašas</p>
+            <h2>Visos įmonės</h2>
+          </div>
+        </div>
+        <ul class="work-list" id="companies"></ul>
+      </section>
+
+      <section class="panel panel-grey" data-admin-only>
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Nauja</p>
+            <h2>Pridėti įmonę</h2>
+          </div>
+        </div>
+        <form id="companyForm" class="form-stack">
+          <div>
+            <label class="field-label" for="companyName">Įmonė</label>
+            <input id="companyName" name="name" type="text" autocomplete="organization" required>
+          </div>
+          <div>
+            <label class="field-label" for="companyAddress">Adresas</label>
+            <input id="companyAddress" name="address" type="text" autocomplete="street-address" required>
+          </div>
+          <div>
+            <label class="field-label" for="companyPhone">Telefonas</label>
+            <input id="companyPhone" name="phone" type="tel" autocomplete="tel">
+          </div>
+          <div>
+            <label class="field-label" for="companyEmail">El. paštas</label>
+            <input id="companyEmail" name="email" type="email" autocomplete="email">
+          </div>
+          <p class="form-message" id="companyMessage" role="status"></p>
+          <button class="button button-primary full-width" type="submit">
+            Sukurti įmonę
+          </button>
+        </form>
+      </section>
+    </section>
+  </main>
+
+  <script src="auth.js"></script>
+  <script src="companies.js"></script>
+</body>
+</html>

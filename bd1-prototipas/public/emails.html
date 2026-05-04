@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emailai</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Inbox</p>
+        <h1>Emailai</h1>
+      </div>
+      <nav class="topbar-actions" aria-label="Puslapiai">
+        <a class="button button-secondary" href="index.html">Pagrindinis</a>
+        <a class="button button-secondary" href="works.html">Darbai</a>
+        <a class="button button-secondary" href="companies.html">Įmonės</a>
+        <a class="button button-secondary" href="settings.html" data-admin-only>Nustatymai</a>
+        <button class="button button-secondary" onclick="loadEmails()" type="button">
+          Atnaujinti
+        </button>
+      </nav>
+    </header>
+
+    <section class="summary-grid" aria-label="Email santrauka">
+      <div class="metric">
+        <span class="metric-label">Visa informacija</span>
+        <strong id="completeEmailCount">0</strong>
+      </div>
+      <div class="metric">
+        <span class="metric-label">Dalis informacijos</span>
+        <strong id="partialEmailCount">0</strong>
+      </div>
+      <div class="metric metric-muted">
+        <span class="metric-label">Be informacijos</span>
+        <strong id="emptyEmailCount">0</strong>
+      </div>
+    </section>
+
+    <section class="filter-bar" aria-label="Email filtrai">
+      <input id="emailSearch" type="search" placeholder="Ieškoti pagal temą, siuntėją, datą">
+      <select id="emailSort">
+        <option value="newest">Naujausi viršuje</option>
+        <option value="oldest">Seniausi viršuje</option>
+        <option value="subject">Pagal temą</option>
+        <option value="sender">Pagal siuntėją</option>
+        <option value="unread">Neperskaityti viršuje</option>
+      </select>
+      <select id="emailReadFilter">
+        <option value="all">Visi emailai</option>
+        <option value="seen">Perskaityti</option>
+        <option value="unseen">Neperskaityti</option>
+      </select>
+    </section>
+
+    <section class="pagination-bar" aria-label="Email puslapiavimas">
+      <span id="emailPageSummary">0 emailų</span>
+      <div class="pagination-actions">
+        <button class="button button-secondary" id="previousEmailPage" type="button">Atgal</button>
+        <span id="emailPageIndicator">1 / 1</span>
+        <button class="button button-secondary" id="nextEmailPage" type="button">Toliau</button>
+      </div>
+    </section>
+
+    <section class="email-folder-stack" aria-label="Email aplankai">
+      <section class="panel email-folder" data-email-folder="complete">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Aplankas</p>
+            <h2>Visa informacija</h2>
+          </div>
+          <button class="button button-secondary" type="button" data-toggle-folder="complete" aria-expanded="true">Uždaryti</button>
+        </div>
+        <ul class="work-list" id="completeEmails"></ul>
+      </section>
+
+      <section class="panel panel-grey email-folder" data-email-folder="partial">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Aplankas</p>
+            <h2>Dalis informacijos</h2>
+          </div>
+          <button class="button button-secondary" type="button" data-toggle-folder="partial" aria-expanded="true">Uždaryti</button>
+        </div>
+        <ul class="work-list" id="partialEmails"></ul>
+      </section>
+
+      <section class="panel email-folder" data-email-folder="empty">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Aplankas</p>
+            <h2>Be informacijos</h2>
+          </div>
+          <button class="button button-secondary" type="button" data-toggle-folder="empty" aria-expanded="true">Uždaryti</button>
+        </div>
+        <ul class="work-list" id="emptyEmails"></ul>
+      </section>
+    </section>
+  </main>
+
+  <script src="auth.js"></script>
+  <script src="emails.js"></script>
+</body>
+</html>

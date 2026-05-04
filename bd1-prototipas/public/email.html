@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Email</p>
+        <h1 id="emailTitle">Email</h1>
+      </div>
+      <nav class="topbar-actions" aria-label="Puslapiai">
+        <a class="button button-secondary" href="emails.html">Emailai</a>
+        <a class="button button-secondary" href="index.html">Pagrindinis</a>
+        <a class="button button-secondary" href="works.html">Darbai</a>
+        <a class="button button-secondary" href="companies.html">Įmonės</a>
+        <a class="button button-secondary" href="settings.html" data-admin-only>Nustatymai</a>
+      </nav>
+    </header>
+
+    <section class="company-detail-grid email-detail-grid">
+      <section class="panel panel-grey">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Informacija</p>
+            <h2>Detalės</h2>
+          </div>
+          <button class="button button-secondary hidden" id="confirmEmailButton" type="button">Patvirtinti</button>
+          <button class="button button-secondary" id="rejectEmailButton" type="button">Atmesti</button>
+        </div>
+        <p class="form-message" id="confirmEmailMessage" role="status"></p>
+        <dl class="detail-list">
+          <div>
+            <dt>Išsiųsta</dt>
+            <dd id="emailSentAt">-</dd>
+          </div>
+          <div>
+            <dt>Gauta</dt>
+            <dd id="emailReceivedAt">-</dd>
+          </div>
+          <div>
+            <dt>Nuo</dt>
+            <dd id="emailFrom">-</dd>
+          </div>
+          <div>
+            <dt>Kam</dt>
+            <dd id="emailTo">-</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="timeline-grid">
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Turinys</p>
+              <h2>Laiško tekstas</h2>
+            </div>
+          </div>
+          <pre class="email-body" id="emailBody"></pre>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+          <div>
+            <p class="eyebrow">Šablonas</p>
+            <h2>Atpažinti laukai</h2>
+          </div>
+          <button class="button button-primary" id="confirmEmailButtonSecondary" type="button">Patvirtinti</button>
+        </div>
+          <form class="email-edit-form" id="emailWorkForm">
+            <div>
+              <label class="field-label" for="parsedCompanyId">Įmonės ID</label>
+              <input id="parsedCompanyId" name="companyId" type="text" list="companyIdSuggestions" placeholder="Galima keli ID per kablelį">
+            </div>
+            <div>
+              <label class="field-label" for="parsedCompany">Įmonė</label>
+              <input id="parsedCompany" name="company" type="text" list="companyNameSuggestions">
+            </div>
+            <div>
+              <label class="field-label" for="parsedAddress">Adresas</label>
+              <input id="parsedAddress" name="address" type="text" list="companyAddressSuggestions">
+            </div>
+            <div>
+              <label class="field-label" for="parsedPhone">Telefonas</label>
+              <input id="parsedPhone" name="phone" type="text">
+            </div>
+            <div>
+              <label class="field-label" for="parsedEmail">El. paštas</label>
+              <input id="parsedEmail" name="email" type="email">
+            </div>
+            <div>
+              <label class="field-label" for="parsedDate">Data</label>
+              <input id="parsedDate" name="date" type="date">
+            </div>
+            <div>
+              <label class="field-label" for="parsedTime">Laikas</label>
+              <input id="parsedTime" name="time" type="text" placeholder="03:00-04:30">
+            </div>
+            <div>
+              <label class="field-label" for="parsedDuration">Trukmė</label>
+              <input id="parsedDuration" name="duration" type="text" placeholder="90 min">
+            </div>
+            <div>
+              <label class="field-label" for="parsedDescription">Aprašymas</label>
+              <textarea id="parsedDescription" name="description" rows="3"></textarea>
+            </div>
+          </form>
+          <datalist id="companyIdSuggestions"></datalist>
+          <datalist id="companyNameSuggestions"></datalist>
+          <datalist id="companyAddressSuggestions"></datalist>
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <script src="auth.js"></script>
+  <script src="email.js"></script>
+</body>
+</html>

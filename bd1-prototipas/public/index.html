@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagrindinis</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Apžvalga</p>
+        <h1>Pagrindinis</h1>
+      </div>
+      <nav class="topbar-actions" aria-label="Puslapiai">
+        <a class="button button-secondary" href="works.html">Darbai</a>
+        <a class="button button-secondary" href="companies.html">Įmonės</a>
+        <a class="button button-secondary" href="emails.html">Emailai</a>
+        <a class="button button-secondary" href="settings.html" data-admin-only>Nustatymai</a>
+        <button class="button button-secondary" onclick="loadWorks()" type="button">
+          Atnaujinti
+        </button>
+      </nav>
+    </header>
+
+    <section class="summary-grid" aria-label="Santrauka">
+      <div class="metric">
+        <span class="metric-label">Praėję 24h</span>
+        <strong id="recentWorksCount">0</strong>
+      </div>
+      <div class="metric">
+        <span class="metric-label">Vyksta dabar</span>
+        <strong id="currentWorksCount">0</strong>
+      </div>
+      <div class="metric metric-muted">
+        <span class="metric-label">Artimiausios 24h</span>
+        <strong id="upcomingWorksCount">0</strong>
+      </div>
+      <div class="metric">
+        <span class="metric-label">Nepilni emailai</span>
+        <strong id="incompleteEmailsCount">0</strong>
+      </div>
+    </section>
+
+    <section class="filter-bar" aria-label="Darbų filtrai">
+      <input id="workSearch" type="search" placeholder="Ieškoti pagal įmonę, aprašymą, datą">
+      <select id="workStatusFilter">
+        <option value="all">Visi statusai</option>
+        <option value="sent">Išsiųsta</option>
+        <option value="not-sent">Neišsiųsta</option>
+      </select>
+      <select id="workCompanyFilter">
+        <option value="all">Visos įmonės</option>
+      </select>
+    </section>
+
+    <section class="dashboard-grid" aria-label="Planinių darbų langai">
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Praeitis</p>
+            <h2>Įvyko per 24h</h2>
+          </div>
+        </div>
+        <ul class="work-list" id="recentWorks"></ul>
+      </section>
+
+      <section class="panel panel-grey">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Dabar</p>
+            <h2>Vyksta dabar</h2>
+          </div>
+        </div>
+        <ul class="work-list" id="currentWorks"></ul>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Ateitis</p>
+            <h2>Prasidės per 24h</h2>
+          </div>
+        </div>
+        <ul class="work-list" id="upcomingWorks"></ul>
+      </section>
+
+      <section class="panel panel-grey">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Emailai</p>
+            <h2>Nepilna informacija</h2>
+          </div>
+        </div>
+        <ul class="work-list" id="incompleteEmails"></ul>
+      </section>
+    </section>
+  </main>
+
+  <script src="auth.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Įmonė</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Įmonės kortelė</p>
+        <h1 id="companyTitle">Įmonė</h1>
+      </div>
+      <nav class="topbar-actions" aria-label="Puslapiai">
+        <a class="button button-secondary" href="companies.html">Įmonės</a>
+        <a class="button button-secondary" href="emails.html">Emailai</a>
+        <a class="button button-secondary" href="index.html">Pagrindinis</a>
+        <a class="button button-secondary" href="works.html">Darbai</a>
+        <a class="button button-secondary" href="settings.html" data-admin-only>Nustatymai</a>
+      </nav>
+    </header>
+
+    <section class="summary-grid" aria-label="Planinių darbų santrauka">
+      <div class="metric">
+        <span class="metric-label">Praėję</span>
+        <strong id="pastCount">0</strong>
+      </div>
+      <div class="metric metric-muted">
+        <span class="metric-label">Dabartiniai</span>
+        <strong id="currentCount">0</strong>
+      </div>
+      <div class="metric">
+        <span class="metric-label">Būsimi</span>
+        <strong id="upcomingCount">0</strong>
+      </div>
+    </section>
+
+    <section class="company-detail-grid">
+      <section class="panel panel-grey">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Informacija</p>
+            <h2>Kontaktai</h2>
+          </div>
+          <button class="button button-secondary" id="editCompanyButton" type="button" data-admin-only>Redaguoti</button>
+        </div>
+        <dl class="detail-list" id="companyDetails">
+          <div>
+            <dt>Įmonės ID</dt>
+            <dd id="companyId">-</dd>
+          </div>
+          <div>
+            <dt>Įmonė</dt>
+            <dd id="companyName">-</dd>
+          </div>
+          <div>
+            <dt>Adresas</dt>
+            <dd id="companyAddress">-</dd>
+          </div>
+          <div>
+            <dt>Telefonas</dt>
+            <dd id="companyPhone">-</dd>
+          </div>
+          <div>
+            <dt>El. paštas</dt>
+            <dd id="companyEmail">-</dd>
+          </div>
+        </dl>
+        <form class="company-edit-form hidden" id="companyEditForm">
+          <div>
+            <label class="field-label" for="editCompanyName">Įmonė</label>
+            <input id="editCompanyName" name="name" type="text" required>
+          </div>
+          <div>
+            <label class="field-label" for="editCompanyAddress">Adresas</label>
+            <input id="editCompanyAddress" name="address" type="text" required>
+          </div>
+          <div>
+            <label class="field-label" for="editCompanyPhone">Telefonas</label>
+            <input id="editCompanyPhone" name="phone" type="tel">
+          </div>
+          <div>
+            <label class="field-label" for="editCompanyEmail">El. paštas</label>
+            <input id="editCompanyEmail" name="email" type="email">
+          </div>
+          <p class="form-message" id="companyEditMessage" role="status"></p>
+          <div class="form-actions">
+            <button class="button button-primary" type="submit">Išsaugoti</button>
+            <button class="button button-secondary" id="cancelCompanyEdit" type="button">Atšaukti</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="timeline-grid">
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Praeitis</p>
+              <h2>Praėję planiniai darbai</h2>
+            </div>
+          </div>
+          <ul class="work-list" id="pastWorks"></ul>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Šiandien</p>
+              <h2>Dabartiniai planiniai darbai</h2>
+            </div>
+          </div>
+          <ul class="work-list" id="currentWorks"></ul>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Ateitis</p>
+              <h2>Būsimi planiniai darbai</h2>
+            </div>
+          </div>
+          <ul class="work-list" id="upcomingWorks"></ul>
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <script src="auth.js"></script>
+  <script src="company.js"></script>
+</body>
+</html>

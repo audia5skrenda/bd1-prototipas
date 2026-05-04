@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_02" targetNamespace="http://planiniai.local/bpmn">
+  <bpmn:process id="Process_02" name="Pusiau automatinis tvarkymas" isExecutable="false">
+    <bpmn:startEvent id="Start" name="Nepilnas email"><bpmn:outgoing>F1</bpmn:outgoing></bpmn:startEvent>
+    <bpmn:userTask id="Open" name="Atidaryti email"><bpmn:incoming>F1</bpmn:incoming><bpmn:outgoing>F2</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="Edit" name="Redaguoti laukus"><bpmn:incoming>F2</bpmn:incoming><bpmn:incoming>FBack</bpmn:incoming><bpmn:outgoing>F3</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="Valid" name="Užpildyta?"><bpmn:incoming>F3</bpmn:incoming><bpmn:outgoing>F4</bpmn:outgoing><bpmn:outgoing>FBack</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="Confirm" name="Patvirtinti"><bpmn:incoming>F4</bpmn:incoming><bpmn:outgoing>F5</bpmn:outgoing></bpmn:userTask>
+    <bpmn:serviceTask id="Save" name="Išsaugoti pataisymus"><bpmn:incoming>F5</bpmn:incoming><bpmn:outgoing>F6</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="Create" name="Sukurti darbą"><bpmn:incoming>F6</bpmn:incoming><bpmn:outgoing>F7</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="Send" name="Siųsti pranešimus"><bpmn:incoming>F7</bpmn:incoming><bpmn:outgoing>F8</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:endEvent id="End" name="Sutvarkyta"><bpmn:incoming>F8</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="F1" sourceRef="Start" targetRef="Open"/>
+    <bpmn:sequenceFlow id="F2" sourceRef="Open" targetRef="Edit"/>
+    <bpmn:sequenceFlow id="F3" sourceRef="Edit" targetRef="Valid"/>
+    <bpmn:sequenceFlow id="F4" name="Taip" sourceRef="Valid" targetRef="Confirm"/>
+    <bpmn:sequenceFlow id="FBack" name="Ne" sourceRef="Valid" targetRef="Edit"/>
+    <bpmn:sequenceFlow id="F5" sourceRef="Confirm" targetRef="Save"/>
+    <bpmn:sequenceFlow id="F6" sourceRef="Save" targetRef="Create"/>
+    <bpmn:sequenceFlow id="F7" sourceRef="Create" targetRef="Send"/>
+    <bpmn:sequenceFlow id="F8" sourceRef="Send" targetRef="End"/>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_02"><bpmndi:BPMNPlane id="Plane_02" bpmnElement="Process_02">
+    <bpmndi:BPMNShape id="S_Start" bpmnElement="Start"><dc:Bounds x="100" y="120" width="36" height="36"/></bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="S_Open" bpmnElement="Open"><dc:Bounds x="190" y="98" width="120" height="80"/></bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="S_Edit" bpmnElement="Edit"><dc:Bounds x="360" y="98" width="130" height="80"/></bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="S_Valid" bpmnElement="Valid" isMarkerVisible="true"><dc:Bounds x="550" y="113" width="50" height="50"/></bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="S_Confirm" bpmnElement="Confirm"><dc:Bounds x="660" y="98" width="110" height="80"/></bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="S_Save" bpmnElement="Save"><dc:Bounds x="820" y="98" width="140" height="80"/></bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="S_Create" bpmnElement="Create"><dc:Bounds x="1010" y="98" width="120" height="80"/></bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="S_Send" bpmnElement="Send"><dc:Bounds x="1180" y="98" width="140" height="80"/></bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="S_End" bpmnElement="End"><dc:Bounds x="1370" y="120" width="36" height="36"/></bpmndi:BPMNShape>
+    <bpmndi:BPMNEdge id="E_F1" bpmnElement="F1"><di:waypoint x="136" y="138"/><di:waypoint x="190" y="138"/></bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="E_F2" bpmnElement="F2"><di:waypoint x="310" y="138"/><di:waypoint x="360" y="138"/></bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="E_F3" bpmnElement="F3"><di:waypoint x="490" y="138"/><di:waypoint x="550" y="138"/></bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="E_F4" bpmnElement="F4"><di:waypoint x="600" y="138"/><di:waypoint x="660" y="138"/></bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="E_FBack" bpmnElement="FBack"><di:waypoint x="575" y="113"/><di:waypoint x="575" y="55"/><di:waypoint x="425" y="55"/><di:waypoint x="425" y="98"/></bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="E_F5" bpmnElement="F5"><di:waypoint x="770" y="138"/><di:waypoint x="820" y="138"/></bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="E_F6" bpmnElement="F6"><di:waypoint x="960" y="138"/><di:waypoint x="1010" y="138"/></bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="E_F7" bpmnElement="F7"><di:waypoint x="1130" y="138"/><di:waypoint x="1180" y="138"/></bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="E_F8" bpmnElement="F8"><di:waypoint x="1320" y="138"/><di:waypoint x="1370" y="138"/></bpmndi:BPMNEdge>
+  </bpmndi:BPMNPlane></bpmndi:BPMNDiagram>
+</bpmn:definitions>

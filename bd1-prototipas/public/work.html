@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planiniai darbai</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Darbo kortelė</p>
+        <h1 id="workTitle">Planiniai darbai</h1>
+      </div>
+      <nav class="topbar-actions" aria-label="Puslapiai">
+        <a class="button button-secondary" href="index.html">Pagrindinis</a>
+        <a class="button button-secondary" href="works.html">Darbai</a>
+        <a class="button button-secondary" href="companies.html">Įmonės</a>
+        <a class="button button-secondary" href="emails.html">Emailai</a>
+        <a class="button button-secondary" href="settings.html" data-admin-only>Nustatymai</a>
+      </nav>
+    </header>
+
+    <section class="company-detail-grid email-detail-grid">
+      <section class="panel panel-grey">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Informacija</p>
+            <h2>Darbas</h2>
+          </div>
+          <button class="button button-secondary" id="sendWorkButton" type="button">Siųsti</button>
+        </div>
+        <dl class="detail-list">
+          <div>
+            <dt>Data</dt>
+            <dd id="workDate">-</dd>
+          </div>
+          <div>
+            <dt>Laikas</dt>
+            <dd id="workTime">-</dd>
+          </div>
+          <div>
+            <dt>Trukmė</dt>
+            <dd id="workDuration">-</dd>
+          </div>
+          <div>
+            <dt>Būsena</dt>
+            <dd id="workStatus">-</dd>
+          </div>
+          <div>
+            <dt>Aprašymas</dt>
+            <dd id="workDescription">-</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Poveikis</p>
+            <h2>Paveiktos įmonės</h2>
+          </div>
+        </div>
+        <ul class="work-list" id="affectedCompanies"></ul>
+      </section>
+    </section>
+  </main>
+
+  <script src="auth.js"></script>
+  <script src="work.js"></script>
+</body>
+</html>

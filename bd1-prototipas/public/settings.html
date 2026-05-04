@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nustatymai</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Admin</p>
+        <h1>Nustatymai</h1>
+      </div>
+      <nav class="topbar-actions" aria-label="Puslapiai">
+        <a class="button button-secondary" href="index.html">Pagrindinis</a>
+        <a class="button button-secondary" href="works.html">Darbai</a>
+        <a class="button button-secondary" href="companies.html">Įmonės</a>
+        <a class="button button-secondary" href="emails.html">Emailai</a>
+      </nav>
+    </header>
+
+    <section class="settings-grid">
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Email</p>
+            <h2>Automatika</h2>
+          </div>
+        </div>
+        <label class="checkbox-row" for="autoEmailProcessing">
+          <input id="autoEmailProcessing" type="checkbox">
+          <span>
+            <strong>Automatiškai apdoroti emailus</strong>
+            <small>Kai įjungta, nauji pilni emailai patys sukuria planinius darbus ir išsiunčia testinius pranešimus.</small>
+          </span>
+        </label>
+        <p class="form-message" id="settingsMessage" role="status"></p>
+      </section>
+
+      <section class="panel panel-grey">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Rolės</p>
+            <h2>Vartotojai</h2>
+          </div>
+        </div>
+        <ul class="work-list" id="usersList"></ul>
+        <form id="userForm" class="form-stack settings-form">
+          <div>
+            <label class="field-label" for="userName">Vardas</label>
+            <input id="userName" name="name" type="text" required>
+          </div>
+          <div>
+            <label class="field-label" for="userRole">Rolė</label>
+            <select id="userRole" name="role">
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+          <div>
+            <label class="field-label" for="userPassword">Slaptažodis</label>
+            <input id="userPassword" name="password" type="password" autocomplete="new-password" required>
+          </div>
+          <p class="form-message" id="userMessage" role="status"></p>
+          <button class="button button-primary full-width" type="submit">Sukurti vartotoją</button>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Įmonės</p>
+            <h2>Greitas pridėjimas</h2>
+          </div>
+        </div>
+        <form id="settingsCompanyForm" class="form-stack">
+          <div>
+            <label class="field-label" for="settingsCompanyName">Įmonė</label>
+            <input id="settingsCompanyName" name="name" type="text" autocomplete="organization" required>
+          </div>
+          <div>
+            <label class="field-label" for="settingsCompanyAddress">Adresas</label>
+            <input id="settingsCompanyAddress" name="address" type="text" autocomplete="street-address" required>
+          </div>
+          <div>
+            <label class="field-label" for="settingsCompanyPhone">Telefonas</label>
+            <input id="settingsCompanyPhone" name="phone" type="tel" autocomplete="tel">
+          </div>
+          <div>
+            <label class="field-label" for="settingsCompanyEmail">El. paštas</label>
+            <input id="settingsCompanyEmail" name="email" type="email" autocomplete="email">
+          </div>
+          <p class="form-message" id="settingsCompanyMessage" role="status"></p>
+          <button class="button button-primary full-width" type="submit">Pridėti įmonę</button>
+        </form>
+      </section>
+    </section>
+  </main>
+
+  <script src="auth.js"></script>
+  <script src="settings.js"></script>
+</body>
+</html>
