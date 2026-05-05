@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
-const DATA_DIR = path.join(__dirname, "data");
+const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, "data");
 const DATA_FILE = path.join(DATA_DIR, "works.json");
 const COMPANIES_FILE = path.join(DATA_DIR, "companies.json");
 const IMPORTED_EMAILS_FILE = path.join(DATA_DIR, "importedEmails.json");
@@ -1513,12 +1513,16 @@ app.post("/send-email/:id", async (req, res) => {
 
 // ==========================================
 
-const PORT = process.env.PORT || 3000;
+function startServer(port = process.env.PORT || 3000) {
+  return app.listen(port, () => {
+    console.log(`Serveris veikia: http://localhost:${port}`);
+    startEmailPolling();
+  });
+}
 
-app.listen(PORT, () => {
-  console.log(`Serveris veikia: http://localhost:${PORT}`);
-  startEmailPolling();
-});
+if (require.main === module) {
+  startServer();
+}
 
 function getEmailConfig() {
   return {
@@ -1613,3 +1617,11 @@ function startEmailPolling() {
   importUnreadEmails();
   setInterval(importUnreadEmails, pollMs);
 }
+
+module.exports = {
+  app,
+  db,
+  startServer,
+  parseTemplateText,
+  isValidWorkPayload
+};

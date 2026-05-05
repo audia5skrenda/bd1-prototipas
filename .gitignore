@@ -15,3 +15,4 @@ bd1-prototipas/data/
 .DS_Store
 .vscode/
 npm-debug.log*
+test-results/
